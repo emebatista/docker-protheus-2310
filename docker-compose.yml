@@ -1,0 +1,87 @@
+version: "1.0"
+services:
+    db:
+        # build: ./postgres-23
+        image: emebatista/postgres-2310:latest
+        container_name: postgresql-2310
+        user: root
+        ports:
+            - "5432:5432"
+        volumes:
+            - ./volume/data/psql:/var/lib/postgresql/data
+        networks:
+            - protheus
+        restart: always
+    license:
+        # build: ./protheus-license-23
+        image: emebatista/license-server-2310:latest
+        container_name: license-server-2310
+        ports:
+            - "8020:80"
+            - "2234:2234"
+            - "5555:5555"
+        ulimits:
+            core:
+                soft: -1
+                hard: -1
+            nofile:
+                soft: 65536
+                hard: 65536
+            stack:
+                soft: 1048576
+                hard: 1048576
+        networks:
+            - protheus
+        restart: always
+    dbaccess:
+        # build: ./protheus-dbaccess-23
+        image: emebatista/protheus-dbaccess-2310:latest
+        container_name: dbaccess-2310
+        ports:
+          - "7890:7890"
+        env_file:
+          - .env
+        ulimits:
+            core:
+                soft: -1
+                hard: -1
+            nofile:
+                soft: 65535
+                hard: 65535
+            stack:
+                soft: 1048576
+                hard: 1048576
+        networks:
+            - protheus
+        restart: always
+        depends_on:
+            - db
+            - license
+    protheus:
+        # build: ./protheus-23
+        image: emebatista/protheus-2310:latest
+        container_name: protheus-2310
+        ports:
+            - "1234:1234"
+            - "4321:4321"
+        environment:
+            - APPSERVER_DATABASE=POSTGRES
+        volumes:
+            - ./volume/data/system_temp:/protheus12/protheus_data/system_temp
+        ulimits:
+            core:
+                soft: -1
+                hard: -1
+            nofile:
+                soft: 65536
+                hard: 65536
+            stack:
+                soft: 1048576
+                hard: 1048576
+        networks:
+            - protheus
+        restart: always
+        depends_on:
+            - dbaccess
+networks:
+    protheus:
