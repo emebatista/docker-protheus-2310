@@ -7,3 +7,11 @@ Procedimentos:
 4. Acessar o <b>Protheus</b> através do smartclient através na porta <b>1234</b>.
 5. Acessar o <b>Protheus WebApp</b> através do navegador do endereço <b>http://localhost:4321</b>.
 6. Primeiramente acessar o SIGACFG e definir a criação das tabelas para a empresa teste (99) e localização desejada (Brasil).
+
+---
+
+![Escolha importar da systemload](https://github.com/emebatista/docker-protheus-2310/blob/main/parametros_dicionario.png)
+
+![Escolha ambiente de Producao](
+https://github.com/emebatista/docker-protheus-2310/blob/main/parametros_producao.png)
+
