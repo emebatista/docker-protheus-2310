@@ -43,7 +43,7 @@ services:
         ports:
           - "7890:7890"
         env_file:
-          - .env
+          - conf.inf
         ulimits:
             core:
                 soft: -1
