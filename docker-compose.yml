@@ -68,6 +68,7 @@ services:
         ports:
             - "1234:1234"
             - "4321:4321"
+            - "8181:8181"
         environment:
             - APPSERVER_DATABASE=POSTGRES
         volumes:
