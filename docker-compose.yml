@@ -1,4 +1,3 @@
-version: "1.0"
 services:
     db:
         # build: ./postgres-23
@@ -88,5 +87,26 @@ services:
         restart: always
         depends_on:
             - dbaccess
+    smartview:
+    #    build: ./protheus-smartview-23
+        image: emebatista/smartview-2310:latest
+        platform: linux/amd64
+        container_name: smartview-2310
+        ports:
+            - "7017:7017"
+            - "7019:7019"
+        ulimits:
+            core:
+                soft: -1
+                hard: -1
+            nofile:
+                soft: 65536
+                hard: 65536
+            stack:
+                soft: 1048576
+                hard: 1048576
+        networks:
+            - protheus
+        restart: always
 networks:
     protheus:
