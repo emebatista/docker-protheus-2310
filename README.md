@@ -11,7 +11,7 @@ Procedimentos:
     - Para verificar o status do serviço do SmartView: http://localhost:7019/diagnostic
     - Para alterar configuração do SmartView, criação de conectores, consultas específicas e relatórios, o endereço é http://localhost:7017/
     - Para reconfigurar o SmartView: http://localhost:7019/startup
-    - Dentro do Protheus, para poder acessar os relatórios no novo formato, é preciso acessar SIGACFG / Ambiente / Cadastros / Configuração SmartView. Depois escolher a opção "token protheus". É IMPORTANTE informar na url o IP real da máquina (não localhost nem 127.0.0.1), informe no formato http://[ip]:7017 e clicar 'Testar Conexão'. 
+    - Dentro do Protheus, para poder acessar os relatórios no novo formato, é preciso acessar SIGACFG / Ambiente / Cadastros / Configuração SmartView. Depois escolher a opção "token protheus". É IMPORTANTE informar na url o IP real da máquina (não localhost nem 127.0.0.1), informe no formato http://ip:7017 e clicar 'Testar Conexão'. Exemplo: http://192.168.0.10:7017.
     
 Observação:
 Se quiser utilizar o Protheus na interface sem a porta multiprotocolo, utilize o ambiente P2310D. Esta opção é útil quando se precisa compilar customizações desenvolvidas em ADVPL/TLPP.
