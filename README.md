@@ -3,7 +3,11 @@
 Procedimentos:
 1. Instalar o <b>Docker</b> ( https://www.docker.com/products/docker-desktop/ )
 2. Criar uma pasta e copiar os arquivos <b>docker-compose.yml</b> ( https://github.com/emebatista/docker-protheus-2310/blob/main/docker-compose.yml )  e <b>conf.inf</b> ( https://github.com/emebatista/docker-protheus-2310/blob/main/conf.inf )
-3. Abrir o terminal dentro da pasta criada e que contém os dois arquivos anteriores e dar o comando: <b>docker-compose up -d </b>. Se as imagens já estiverem em cache e quiser forçar baixá-las de novo, o comando é docker-compose up -d --pull. No Docker Desktop, o nome do grupo de conteiners será o mesmo do nome da pasta onde foi dado o comando.
+3. Abrir o terminal dentro da pasta criada e que contém os dois arquivos anteriores e dar os comandos: <br>
+```docker login``` <br>
+e depois <br>
+```docker-compose up -d ``` <br> Se as imagens já estiverem em cache e quiser forçar baixá-las de novo, o comando é <br> ```docker-compose up -d --pull```<br>
+No Docker Desktop, o nome do grupo de conteiners será o mesmo do nome da pasta onde foi dado o comando.
 4. Acessar o <b>Protheus</b> através do smartclient através na porta <b>1234</b>. O nome do ambiente é <b>P2310</b>. Após subida dos containeres, aguarde 5 minutos até entrar pela primeira vez no sistema, pois logo na primeira construção do container o banco de dados será criado e restaurado o backup inicial. 
 5. Acessar o <b>Protheus WebApp</b> através do navegador do endereço <b>http://localhost:4321</b>.
 6. Usuário: Admin , senha: msadm
@@ -13,5 +17,12 @@ Procedimentos:
     - Para reconfigurar o SmartView: http://localhost:7019/startup
     - Dentro do Protheus, para poder acessar os relatórios no novo formato, é preciso acessar SIGACFG / Ambiente / Cadastros / Configuração SmartView. Depois escolher a opção "token protheus". É IMPORTANTE informar na url o IP real da máquina (não localhost nem 127.0.0.1), informe no formato http://ip:7017 e clicar 'Testar Conexão'. Exemplo: http://192.168.0.10:7017.
     
-Observação:
-Se quiser utilizar o Protheus na interface sem a porta multiprotocolo, utilize o ambiente P2310D. Esta opção é útil quando se precisa compilar customizações desenvolvidas em ADVPL/TLPP.
+Notas:
+1) Para utilizar o Protheus na interface sem a porta multiprotocolo, utilize o ambiente P2310D. Esta opção é útil quando se precisa compilar customizações desenvolvidas em ADVPL/TLPP.
+2) Para apagar todas as imagens, volumes e containers que não estão rodando, o comando para apagar tudo e manter apenas os volumes do banco de dados e a pasta system_temp, o comando é :<br> ```docker system prune --all --volumes --force``` 
+3) Para atualizar e baixar novamente apenas um dos containers, use os comandos<br>
+```docker-compose up -d --no-deps --force-recreate license```<br>
+```docker-compose up -d --no-deps --force-recreate protheus```<br>
+```docker-compose up -d --no-deps --force-recreate db```<br>
+```docker-compose up -d --no-deps --force-recreate smartview```<br>
+```docker-compose up -d --no-deps --force-recreate dbaccess```<br>
