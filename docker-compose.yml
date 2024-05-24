@@ -1,6 +1,5 @@
 services:
     db:
-        # build: ./postgres-23
         image: emebatista/postgres-2310:latest
         container_name: postgresql-2310
         platform: linux/amd64
@@ -13,7 +12,6 @@ services:
             - protheus
         restart: always
     license:
-        # build: ./protheus-license-23
         image: emebatista/license-server-2310:latest
         container_name: license-server-2310
         platform: linux/amd64
@@ -35,7 +33,6 @@ services:
             - protheus
         restart: always
     dbaccess:
-        # build: ./protheus-dbaccess-23
         image: emebatista/protheus-dbaccess-2310:latest
         platform: linux/amd64
         container_name: dbaccess-2310
@@ -60,7 +57,6 @@ services:
             - db
             - license
     protheus:
-        # build: ./protheus-23
         image: emebatista/protheus-2310:latest
         platform: linux/amd64
         container_name: protheus-2310
@@ -88,7 +84,6 @@ services:
         depends_on:
             - dbaccess
     smartview:
-    #    build: ./protheus-smartview-23
         image: emebatista/smartview-2310:latest
         platform: linux/amd64
         container_name: smartview-2310
