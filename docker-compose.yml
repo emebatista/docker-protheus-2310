@@ -19,6 +19,10 @@ services:
             - "8020:80"
             - "2234:2234"
             - "5555:5555"
+        devices:
+            - "/dev/mem:/dev/mem"
+        cap_add:
+            - sys_rawio
         ulimits:
             core:
                 soft: -1
@@ -68,6 +72,11 @@ services:
             - APPSERVER_DATABASE=POSTGRES
         volumes:
             - ./volume/data/system_temp:/protheus12/protheus_data/system_temp
+        devices:
+            - "/dev/mem:/dev/mem"
+        cap_add:
+            - sys_rawio
+        privileged: true
         ulimits:
             core:
                 soft: -1
